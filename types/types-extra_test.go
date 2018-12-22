@@ -14,9 +14,7 @@ type testStruct struct {
 
 func TestTimestamp(t *testing.T) {
 	s := testStruct{
-		F: &Timestamp{
-			IsNull: true,
-		},
+		F: &Timestamp{},
 	}
 
 	b, err := json.Marshal(s)
@@ -31,7 +29,8 @@ func TestTimestamp(t *testing.T) {
 	ts := time.Now()
 	s3 := testStruct{
 		F: &Timestamp{
-			Unix: ts.Unix(),
+			Unix:  ts.Unix(),
+			Valid: true,
 		},
 	}
 	b, err = json.Marshal(s3)
