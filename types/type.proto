@@ -11,3 +11,11 @@ message Timestamp {
   int64 unix = 1;
   bool valid = 2;
 }
+
+message JSONArray {
+  repeated string data = 1;
+}
+
+message JSONMap {
+  map<string, string> data = 1;
+}

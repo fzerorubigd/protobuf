@@ -30,7 +30,7 @@ func (m *Timestamp) Reset()         { *m = Timestamp{} }
 func (m *Timestamp) String() string { return proto.CompactTextString(m) }
 func (*Timestamp) ProtoMessage()    {}
 func (*Timestamp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_type_ace1d27388c7352a, []int{0}
+	return fileDescriptor_type_0dc95610569f8f5c, []int{0}
 }
 func (m *Timestamp) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Timestamp.Unmarshal(m, b)
@@ -64,20 +64,105 @@ func (m *Timestamp) GetValid() bool {
 	return false
 }
 
-func init() {
-	proto.RegisterType((*Timestamp)(nil), "types.Timestamp")
+type JSONArray struct {
+	Data                 []string `protobuf:"bytes,1,rep,name=data" json:"data,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func init() { proto.RegisterFile("types/type.proto", fileDescriptor_type_ace1d27388c7352a) }
+func (m *JSONArray) Reset()         { *m = JSONArray{} }
+func (m *JSONArray) String() string { return proto.CompactTextString(m) }
+func (*JSONArray) ProtoMessage()    {}
+func (*JSONArray) Descriptor() ([]byte, []int) {
+	return fileDescriptor_type_0dc95610569f8f5c, []int{1}
+}
+func (m *JSONArray) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_JSONArray.Unmarshal(m, b)
+}
+func (m *JSONArray) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_JSONArray.Marshal(b, m, deterministic)
+}
+func (dst *JSONArray) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_JSONArray.Merge(dst, src)
+}
+func (m *JSONArray) XXX_Size() int {
+	return xxx_messageInfo_JSONArray.Size(m)
+}
+func (m *JSONArray) XXX_DiscardUnknown() {
+	xxx_messageInfo_JSONArray.DiscardUnknown(m)
+}
 
-var fileDescriptor_type_ace1d27388c7352a = []byte{
-	// 122 bytes of a gzipped FileDescriptorProto
+var xxx_messageInfo_JSONArray proto.InternalMessageInfo
+
+func (m *JSONArray) GetData() []string {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+type JSONMap struct {
+	Data                 map[string]string `protobuf:"bytes,1,rep,name=data" json:"data,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
+	XXX_unrecognized     []byte            `json:"-"`
+	XXX_sizecache        int32             `json:"-"`
+}
+
+func (m *JSONMap) Reset()         { *m = JSONMap{} }
+func (m *JSONMap) String() string { return proto.CompactTextString(m) }
+func (*JSONMap) ProtoMessage()    {}
+func (*JSONMap) Descriptor() ([]byte, []int) {
+	return fileDescriptor_type_0dc95610569f8f5c, []int{2}
+}
+func (m *JSONMap) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_JSONMap.Unmarshal(m, b)
+}
+func (m *JSONMap) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_JSONMap.Marshal(b, m, deterministic)
+}
+func (dst *JSONMap) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_JSONMap.Merge(dst, src)
+}
+func (m *JSONMap) XXX_Size() int {
+	return xxx_messageInfo_JSONMap.Size(m)
+}
+func (m *JSONMap) XXX_DiscardUnknown() {
+	xxx_messageInfo_JSONMap.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_JSONMap proto.InternalMessageInfo
+
+func (m *JSONMap) GetData() map[string]string {
+	if m != nil {
+		return m.Data
+	}
+	return nil
+}
+
+func init() {
+	proto.RegisterType((*Timestamp)(nil), "types.Timestamp")
+	proto.RegisterType((*JSONArray)(nil), "types.JSONArray")
+	proto.RegisterType((*JSONMap)(nil), "types.JSONMap")
+	proto.RegisterMapType((map[string]string)(nil), "types.JSONMap.DataEntry")
+}
+
+func init() { proto.RegisterFile("types/type.proto", fileDescriptor_type_0dc95610569f8f5c) }
+
+var fileDescriptor_type_0dc95610569f8f5c = []byte{
+	// 216 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0x28, 0xa9, 0x2c, 0x48,
 	0x2d, 0xd6, 0x07, 0x91, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9, 0x42, 0xac, 0x60, 0x11, 0x25, 0x53,
 	0x2e, 0xce, 0x90, 0xcc, 0xdc, 0xd4, 0xe2, 0x92, 0xc4, 0xdc, 0x02, 0x21, 0x21, 0x2e, 0x96, 0xd2,
 	0xbc, 0xcc, 0x0a, 0x09, 0x46, 0x05, 0x46, 0x0d, 0xe6, 0x20, 0x30, 0x5b, 0x48, 0x84, 0x8b, 0xb5,
-	0x2c, 0x31, 0x27, 0x33, 0x45, 0x82, 0x49, 0x81, 0x51, 0x83, 0x23, 0x08, 0xc2, 0x71, 0x52, 0xe2,
-	0xe2, 0x4c, 0xce, 0xcf, 0xd5, 0x03, 0x9b, 0xe1, 0xc4, 0x15, 0x02, 0xa2, 0x02, 0x40, 0xc6, 0x06,
-	0x30, 0x46, 0xb1, 0x83, 0x05, 0x0b, 0x92, 0x92, 0xd8, 0xc0, 0x16, 0x19, 0x03, 0x02, 0x00, 0x00,
-	0xff, 0xff, 0xe1, 0xb3, 0x79, 0xd9, 0x7c, 0x00, 0x00, 0x00,
+	0x2c, 0x31, 0x27, 0x33, 0x45, 0x82, 0x49, 0x81, 0x51, 0x83, 0x23, 0x08, 0xc2, 0x51, 0x92, 0xe7,
+	0xe2, 0xf4, 0x0a, 0xf6, 0xf7, 0x73, 0x2c, 0x2a, 0x4a, 0xac, 0x04, 0x69, 0x4b, 0x49, 0x2c, 0x49,
+	0x94, 0x60, 0x54, 0x60, 0xd6, 0xe0, 0x0c, 0x02, 0xb3, 0x95, 0x0a, 0xb8, 0xd8, 0x41, 0x0a, 0x7c,
+	0x13, 0x0b, 0x84, 0x74, 0x90, 0xa4, 0xb9, 0x8d, 0x24, 0xf4, 0xc0, 0x16, 0xeb, 0x41, 0x65, 0xf5,
+	0x5c, 0x12, 0x4b, 0x12, 0x5d, 0xf3, 0x4a, 0x8a, 0x2a, 0x21, 0x1a, 0xa5, 0xcc, 0xb9, 0x38, 0xe1,
+	0x42, 0x42, 0x02, 0x5c, 0xcc, 0xd9, 0xa9, 0x95, 0x60, 0xf7, 0x70, 0x06, 0x81, 0x98, 0x50, 0xe7,
+	0x94, 0xa6, 0x82, 0x9d, 0xc3, 0x19, 0x04, 0xe1, 0x58, 0x31, 0x59, 0x30, 0x3a, 0x29, 0x71, 0x71,
+	0x26, 0xe7, 0xe7, 0x42, 0x4c, 0x77, 0xe2, 0x0a, 0x01, 0x51, 0x01, 0x20, 0x9f, 0x06, 0x30, 0x46,
+	0xb1, 0x83, 0x05, 0x0b, 0x92, 0x92, 0xd8, 0xc0, 0x7e, 0x37, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff,
+	0x21, 0xf8, 0x83, 0xb1, 0x0f, 0x01, 0x00, 0x00,
 }
