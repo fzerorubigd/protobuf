@@ -69,3 +69,10 @@ func (m *Timestamp) Value() (driver.Value, error) {
 	}
 	return time.Unix(m.Unix, 0), nil
 }
+
+func TimestampProto(ts time.Time) *Timestamp {
+	return &Timestamp{
+		Unix:  ts.Unix(),
+		Valid: true,
+	}
+}
