@@ -1,6 +1,7 @@
 package typespb
 
 import (
+	"database/sql"
 	"database/sql/driver"
 	"encoding/json"
 	"fmt"
@@ -175,4 +176,48 @@ func (m *JSONMap) Value() (driver.Value, error) {
 // Null return true if the field is null
 func (m *JSONMap) Null() bool {
 	return m == nil || m.Data == nil
+}
+
+
+// MarshalJSON  try to marshal it in json
+func (m *NullString) MarshalJSON() ([]byte, error) {
+	if m == nil || !m.Valid {
+		return []byte("null"), nil
+	}
+
+	return json.Marshal(m.String_)
+}
+
+// UnmarshalJSON try to unmarshal this from a json string
+func (m *NullString) UnmarshalJSON(src []byte) error {
+	if string(src) == "null" {
+		m.Valid = false
+		return nil
+	}
+
+	m.Valid = true
+	return json.Unmarshal(src, &m.String_)
+}
+
+// Scan convert the json array into string slice
+func (m *NullString) Scan(src interface{}) error {
+	var b sql.NullString
+	if err := b.Scan(src); err != nil {
+		return err
+	}
+	m.Valid, m.String_ = b.Valid, b.String
+	return nil
+}
+
+// Value try to get the string slice representation in database
+func (m *NullString) Value() (driver.Value, error) {
+	if !m.Valid {
+		return nil, nil
+	}
+	return m.String_, nil
+}
+
+// Null return true if the field is null
+func (m *NullString) Null() bool {
+	return m == nil || !m.Valid
 }
