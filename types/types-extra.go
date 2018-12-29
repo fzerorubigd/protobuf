@@ -178,7 +178,6 @@ func (m *JSONMap) Null() bool {
 	return m == nil || m.Data == nil
 }
 
-
 // MarshalJSON  try to marshal it in json
 func (m *NullString) MarshalJSON() ([]byte, error) {
 	if m == nil || !m.Valid {
@@ -219,5 +218,48 @@ func (m *NullString) Value() (driver.Value, error) {
 
 // Null return true if the field is null
 func (m *NullString) Null() bool {
+	return m == nil || !m.Valid
+}
+
+// MarshalJSON  try to marshal it in json
+func (m *NullInt64) MarshalJSON() ([]byte, error) {
+	if m == nil || !m.Valid {
+		return []byte("null"), nil
+	}
+
+	return json.Marshal(m.Int64)
+}
+
+// UnmarshalJSON try to unmarshal this from a json string
+func (m *NullInt64) UnmarshalJSON(src []byte) error {
+	if string(src) == "null" {
+		m.Valid = false
+		return nil
+	}
+
+	m.Valid = true
+	return json.Unmarshal(src, &m.Int64)
+}
+
+// Scan convert the json array into string slice
+func (m *NullInt64) Scan(src interface{}) error {
+	var b sql.NullInt64
+	if err := b.Scan(src); err != nil {
+		return err
+	}
+	m.Valid, m.Int64 = b.Valid, b.Int64
+	return nil
+}
+
+// Value try to get the string slice representation in database
+func (m *NullInt64) Value() (driver.Value, error) {
+	if !m.Valid {
+		return nil, nil
+	}
+	return m.Int64, nil
+}
+
+// Null return true if the field is null
+func (m *NullInt64) Null() bool {
 	return m == nil || !m.Valid
 }
