@@ -210,7 +210,7 @@ func (m *NullString) Scan(src interface{}) error {
 
 // Value try to get the string slice representation in database
 func (m *NullString) Value() (driver.Value, error) {
-	if !m.Valid {
+	if m == nil || !m.Valid {
 		return nil, nil
 	}
 	return m.String_, nil
@@ -253,7 +253,7 @@ func (m *NullInt64) Scan(src interface{}) error {
 
 // Value try to get the string slice representation in database
 func (m *NullInt64) Value() (driver.Value, error) {
-	if !m.Valid {
+	if m == nil || !m.Valid {
 		return nil, nil
 	}
 	return m.Int64, nil
