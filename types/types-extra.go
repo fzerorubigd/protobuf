@@ -110,8 +110,12 @@ func (m *JSONArray) Scan(src interface{}) error {
 	default:
 		return fmt.Errorf("unsupported type: %T", src)
 	}
+	if b == nil || string(b) == "null" {
+		m.Data = nil
+		return nil
+	}
 
-	return m.UnmarshalJSON(b)
+	return (*pq.StringArray)(&m.Data).Scan(src)
 }
 
 // Value try to get the string slice representation in database
@@ -120,7 +124,7 @@ func (m *JSONArray) Value() (driver.Value, error) {
 		return nil, nil
 	}
 
-	return m.MarshalJSON()
+	return (*pq.StringArray)(&m.Data).Value()
 }
 
 // Null return true if the field is null
