@@ -5,6 +5,6 @@ generate:
   go_options:
     import_path: github.com/fzerorubigd/protobuf
   plugins:
-    - name: gogo
-      type: gogo
+    - name: go
+      type: go
       output: .
