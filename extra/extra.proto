@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package extra;
 
-option go_package = "github.com/fzerorubigd/protobuf/extrapb";
+option go_package = "github.com/fzerorubigd/protobuf/extra;extrapb";
 option java_multiple_files = true;
 option java_outer_classname = "ExtraProto";
 option java_package = "com.extra";
